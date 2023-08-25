@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF752E00-C083-4BC6-BDE8-44EF24A9AA8A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ThumbnailViewerDemo</RootNamespace>
+    <AssemblyName>ThumbnailViewerDemo</AssemblyName>
+    <StartupObject>ThumbnailViewerDemo.Program</StartupObject>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE; DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE; DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE; DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <PackageReference Include="Vintasoft.Imaging" Version="12.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Gdi" Version="12.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Dicom" Version="5.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.DocCleanup" Version="7.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Jbig2Codec" Version="9.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Jpeg2000Codec" Version="8.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Office.OpenXml" Version="4.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Pdf" Version="9.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.Pdf.Mrc" Version="9.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.RawCodec" Version="12.2.6.1" />
+    <PackageReference Include="Vintasoft.Imaging.UI" Version="12.2.6.1" />
+    <PackageReference Include="Vintasoft.Shared" Version="4.0.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DemosCommonCode.Imaging\ActionProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\ActionProgressForm.designer.cs">
+      <DependentUpon>ActionProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\AssembliesLoader\DicomAssemblyLoader.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\AssembliesLoader\DocxAssemblyLoader.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\AssembliesLoader\Jbig2AssemblyLoader.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\AssembliesLoader\Jpeg2000AssemblyLoader.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\AssembliesLoader\RawAssemblyLoader.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\CodecsFileFilters.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\BmpEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\BmpEncoderSettingsForm.designer.cs">
+      <DependentUpon>BmpEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\GifEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\GifEncoderSettingsForm.designer.cs">
+      <DependentUpon>GifEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\JpegEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\JpegEncoderSettingsForm.designer.cs">
+      <DependentUpon>JpegEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PbmEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PbmEncoderSettingsForm.designer.cs">
+      <DependentUpon>PbmEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PngEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PngEncoderSettingsForm.designer.cs">
+      <DependentUpon>PngEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\SvgEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\SvgEncoderSettingsForm.designer.cs">
+      <DependentUpon>SvgEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\TgaEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\TgaEncoderSettingsForm.designer.cs">
+      <DependentUpon>TgaEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\TiffEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\TiffEncoderSettingsForm.designer.cs">
+      <DependentUpon>TiffEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\WebpEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\WebpEncoderSettingsForm.designer.cs">
+      <DependentUpon>WebpEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\ImagingEncoderFactory.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\Jbig2EncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\Jbig2EncoderSettingsForm.designer.cs">
+      <DependentUpon>Jbig2EncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\Jpeg2000EncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\Jpeg2000EncoderSettingsForm.designer.cs">
+      <DependentUpon>Jpeg2000EncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfCompressionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfCompressionControl.designer.cs">
+      <DependentUpon>PdfCompressionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfEncoderSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfEncoderSettingsForm.designer.cs">
+      <DependentUpon>PdfEncoderSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfImageCompressionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfImageCompressionControl.designer.cs">
+      <DependentUpon>PdfImageCompressionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\PluginsEncoderFactory.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\DocumentPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\DocumentPasswordForm.designer.cs">
+      <DependentUpon>DocumentPasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Fonts\CustomFontProgramsController.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\PropertyGridForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\PropertyGridForm.designer.cs">
+      <DependentUpon>PropertyGridForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode.Imaging\Resources\DemosResourcesManager.cs">
+    </Compile>
+    <Compile Include="DemosCommonCode\AboutBoxBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemosCommonCode\AboutBoxBaseForm.designer.cs">
+      <DependentUpon>AboutBoxBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DemosCommonCode\DemosTools.cs">
+    </Compile>
+    <Compile Include="Dialogs\AboutBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutBoxForm.Designer.cs">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FolderThumbnailViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PbmEncoderSettingsForm.resx">
+      <DependentUpon>PbmEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\TgaEncoderSettingsForm.resx">
+      <DependentUpon>TgaEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\WebpEncoderSettingsForm.resx">
+      <DependentUpon>WebpEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\iconDOCX.png" />
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\SvgEncoderSettingsForm.resx">
+      <DependentUpon>SvgEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\DocumentPasswordForm.resx">
+      <DependentUpon>DocumentPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutBoxForm.resx">
+      <DependentUpon>AboutBoxForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="App.ico" />
+    <Content Include="directives.txt" />
+    <EmbeddedResource Include="DemosCommonCode.Imaging\ActionProgressForm.resx">
+      <DependentUpon>ActionProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\BmpEncoderSettingsForm.resx">
+      <DependentUpon>BmpEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\GifEncoderSettingsForm.resx">
+      <DependentUpon>GifEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\JpegEncoderSettingsForm.resx">
+      <DependentUpon>JpegEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PngEncoderSettingsForm.resx">
+      <DependentUpon>PngEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\TiffEncoderSettingsForm.resx">
+      <DependentUpon>TiffEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\Jbig2EncoderSettingsForm.resx">
+      <DependentUpon>Jbig2EncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\Jpeg2000EncoderSettingsForm.resx">
+      <DependentUpon>Jpeg2000EncoderSettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfCompressionControl.resx">
+      <DependentUpon>PdfCompressionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfEncoderSettingsForm.resx">
+      <DependentUpon>PdfEncoderSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\PluginsEncoderFactory\Dialogs\PdfImageCompressionControl.resx">
+      <DependentUpon>PdfImageCompressionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode.Imaging\PropertyGridForm.resx">
+      <DependentUpon>PropertyGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemosCommonCode\AboutBoxBaseForm.resx">
+      <DependentUpon>AboutBoxBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\iconBMP.png" />
+    <EmbeddedResource Include="Resources\iconDefault.png" />
+    <EmbeddedResource Include="Resources\iconDICOM.png" />
+    <EmbeddedResource Include="Resources\iconEMF.png" />
+    <EmbeddedResource Include="Resources\iconError.png" />
+    <EmbeddedResource Include="Resources\iconGIF.png" />
+    <EmbeddedResource Include="Resources\iconICO.png" />
+    <EmbeddedResource Include="Resources\iconJBIG2.png" />
+    <EmbeddedResource Include="Resources\iconJPEG-LS.png" />
+    <EmbeddedResource Include="Resources\iconJPEG.png" />
+    <EmbeddedResource Include="Resources\iconJPEG2000.png" />
+    <EmbeddedResource Include="Resources\iconPCX.png" />
+    <EmbeddedResource Include="Resources\iconPDF.png" />
+    <EmbeddedResource Include="Resources\iconPNG.png" />
+    <EmbeddedResource Include="Resources\iconRAW.png" />
+    <EmbeddedResource Include="Resources\iconTIFF.png" />
+    <EmbeddedResource Include="Resources\iconWMF.png" />
+    <EmbeddedResource Include="Resources\iconXLSX.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+  </PropertyGroup>
+</Project>
