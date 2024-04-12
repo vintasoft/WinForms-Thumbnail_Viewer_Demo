@@ -166,7 +166,7 @@ namespace ThumbnailViewerDemo
         #region 'File' menu
 
         /// <summary>
-        /// Handles the Click event of OpenFolderToolStripMenuItem object.
+        /// Handles the Click event of openFolderToolStripMenuItem object.
         /// </summary>
         private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -175,7 +175,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the Click event of ExitToolStripMenuItem object.
+        /// Handles the Click event of exitToolStripMenuItem object.
         /// </summary>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -188,7 +188,7 @@ namespace ThumbnailViewerDemo
         #region 'Container' menu
 
         /// <summary>
-        /// Handles the Click event of ClearToolStripMenuItem object.
+        /// Handles the Click event of clearToolStripMenuItem object.
         /// </summary>
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -198,7 +198,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the Click event of SaveAsToolStripMenuItem object.
+        /// Handles the Click event of saveAsToolStripMenuItem object.
         /// </summary>
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -247,7 +247,7 @@ namespace ThumbnailViewerDemo
         #region 'View' menu
 
         /// <summary>
-        /// Handles the SelectedIndexChanged event of FolderFlowStyleToolStripComboBox object.
+        /// Handles the SelectedIndexChanged event of folderFlowStyleToolStripComboBox object.
         /// </summary>
         private void folderFlowStyleToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -255,7 +255,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the SelectedIndexChanged event of FileFlowStyleToolStripComboBox object.
+        /// Handles the SelectedIndexChanged event of fileFlowStyleToolStripComboBox object.
         /// </summary>
         private void fileFlowStyleToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -263,7 +263,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the CheckStateChanged event of SelectionCheckBoxToolStripMenuItem object.
+        /// Handles the CheckStateChanged event of selectionCheckBoxToolStripMenuItem object.
         /// </summary>
         private void selectionCheckBoxToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
         {
@@ -276,7 +276,7 @@ namespace ThumbnailViewerDemo
         #region 'About' menu
 
         /// <summary>
-        /// Handles the Click event of AboutToolStripMenuItem object.
+        /// Handles the Click event of aboutToolStripMenuItem object.
         /// </summary>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -294,7 +294,7 @@ namespace ThumbnailViewerDemo
         #region to FolderViewer
 
         /// <summary>
-        /// Handles the DragEnter event of FolderViewer object.
+        /// Handles the DragEnter event of folderViewer object.
         /// </summary>
         private void folderViewer_DragEnter(object sender, DragEventArgs e)
         {
@@ -306,7 +306,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the DragDrop event of FolderViewer object.
+        /// Handles the DragDrop event of folderViewer object.
         /// </summary>
         private void folderViewer_DragDrop(object sender, DragEventArgs e)
         {
@@ -323,7 +323,7 @@ namespace ThumbnailViewerDemo
         #region to FileThumbnailViewer
 
         /// <summary>
-        /// Handles the DragEnter event of FileThumbnailViewer object.
+        /// Handles the DragEnter event of fileThumbnailViewer object.
         /// </summary>
         private void fileThumbnailViewer_DragEnter(object sender, DragEventArgs e)
         {
@@ -338,7 +338,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the DragLeave event of FileThumbnailViewer object.
+        /// Handles the DragLeave event of fileThumbnailViewer object.
         /// </summary>
         private void fileThumbnailViewer_DragLeave(object sender, EventArgs e)
         {
@@ -351,7 +351,7 @@ namespace ThumbnailViewerDemo
         #region to ContainerThumbnailViewer
 
         /// <summary>
-        /// Handles the DragEnter event of ContainerThumbnailViewer object.
+        /// Handles the DragEnter event of containerThumbnailViewer object.
         /// </summary>
         private void containerThumbnailViewer_DragEnter(object sender, DragEventArgs e)
         {
@@ -377,7 +377,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the DragDrop event of ContainerThumbnailViewer object.
+        /// Handles the DragDrop event of containerThumbnailViewer object.
         /// </summary>
         private void containerThumbnailViewer_DragDrop(object sender, DragEventArgs e)
         {
@@ -447,7 +447,7 @@ namespace ThumbnailViewerDemo
         #region Folder Viewer
 
         /// <summary>
-        /// Handles the DeleteKeyPressed event of FolderViewer object.
+        /// Handles the DeleteKeyPressed event of folderViewer object.
         /// </summary>
         private void folderViewer_DeleteKeyPressed(object sender, KeyEventArgs e)
         {
@@ -490,7 +490,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the FocusedIndexChanged event of FolderViewer object.
+        /// Handles the FocusedIndexChanged event of folderViewer object.
         /// </summary>
         private void folderViewer_FocusedIndexChanged(object sender, FocusedIndexChangedEventArgs e)
         {
@@ -498,7 +498,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the Changed event of SelectedIndices property of FolderViewer object.
+        /// Handles the SelectedIndices_Changed event of folderViewer object.
         /// </summary>
         private void folderViewer_SelectedIndices_Changed(object sender, EventArgs e)
         {
@@ -535,6 +535,9 @@ namespace ThumbnailViewerDemo
             }
         }
 
+        /// <summary>
+        /// Handles the ThumbnailControlCreating event of folderViewer object.
+        /// </summary>
         private void folderViewer_ThumbnailControlCreating(object sender, ThumbnailControlEventArgs e)
         {
             // get checkbox, which is created by ThumbnailViewer
@@ -546,6 +549,9 @@ namespace ThumbnailViewerDemo
             thumbanilCheckbox.CheckedChanged += new EventHandler(thumbnailCheckBox_CheckedChanged);
         }
 
+        /// <summary>
+        /// Handles the ThumbnailControlDisposing event of folderViewer object.
+        /// </summary>
         private void folderViewer_ThumbnailControlDisposing(object sender, ThumbnailControlEventArgs e)
         {
             // unsubscribe from events of thumbnail checkbox
@@ -553,7 +559,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the CheckedChanged event of ThumbnailCheckBox object.
+        /// Handles the CheckedChanged event of thumbnailCheckBox object.
         /// </summary>
         private void thumbnailCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -594,7 +600,7 @@ namespace ThumbnailViewerDemo
         #region Container Thumbnail Viewer
 
         /// <summary>
-        /// Handles the DeleteKeyPressed event of ContainerThumbnailViewer object.
+        /// Handles the DeleteKeyPressed event of containerThumbnailViewer object.
         /// </summary>
         private void containerThumbnailViewer_DeleteKeyPressed(object sender, KeyEventArgs e)
         {
@@ -612,7 +618,7 @@ namespace ThumbnailViewerDemo
         #region Page Image Viewer
 
         /// <summary>
-        /// Handles the ImageLoadingProgress event of PageImageViewer object.
+        /// Handles the ImageLoadingProgress event of pageImageViewer object.
         /// </summary>
         private void pageImageViewer_ImageLoadingProgress(object sender, ProgressEventArgs e)
         {
@@ -623,7 +629,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the ValueChanged event of ImageZoomTrackBar object.
+        /// Handles the ValueChanged event of imageZoomTrackBar object.
         /// </summary>
         private void imageZoomTrackBar_ValueChanged(object sender, EventArgs e)
         {
@@ -647,7 +653,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the SelectedIndexChanged event of ViewersTabControl object.
+        /// Handles the SelectedIndexChanged event of viewersTabControl object.
         /// </summary>
         private void viewersTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -661,7 +667,7 @@ namespace ThumbnailViewerDemo
 
 
         /// <summary>
-        /// Handles the ThumbnailsLoadingProgress event of FileThumbnailViewer object.
+        /// Handles the ThumbnailsLoadingProgress event of fileThumbnailViewer object.
         /// </summary>
         private void fileThumbnailViewer_ThumbnailsLoadingProgress(object sender, ThumbnailsLoadingProgressEventArgs e)
         {

@@ -5,14 +5,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Threading;
-using System.Globalization;
-
 using System.Windows.Forms;
+
 using Vintasoft.Imaging;
-using Vintasoft.Imaging.Codecs;
-using Vintasoft.Imaging.ImageProcessing;
 using Vintasoft.Imaging.Codecs.Decoders;
+using Vintasoft.Imaging.ImageProcessing;
 using Vintasoft.Imaging.UI;
+
 using DemosCommonCode.Imaging;
 
 namespace ThumbnailViewerDemo
@@ -20,12 +19,12 @@ namespace ThumbnailViewerDemo
     public class FolderThumbnailViewer : ThumbnailViewer
     {
 
-        #region Classes
+        #region Nested classes
 
         public class FileIconTagData
         {
 
-            #region Constructor
+            #region Constructors
 
             public FileIconTagData(string filename)
             {
@@ -278,7 +277,7 @@ namespace ThumbnailViewerDemo
 
         string _selectedFolder = null;
         /// <summary>
-        /// Gets or sets a current folder.
+        /// Gets or sets the current folder.
         /// </summary>
         public string SelectedFolder
         {
@@ -350,7 +349,7 @@ namespace ThumbnailViewerDemo
 
         VintasoftImage _defaultFileIcon;
         /// <summary>
-        /// Gets or sets a default icon of file.
+        /// Gets or sets the default icon of file.
         /// </summary>
         [Browsable(false)]
         public VintasoftImage DefaultFileIcon
@@ -376,7 +375,7 @@ namespace ThumbnailViewerDemo
 
         Dictionary<string, VintasoftImage> _fileTypeIcons = new Dictionary<string, VintasoftImage>();
         /// <summary>
-        /// Gets or sets the Dictionary of "file extension" to "icon".
+        /// Gets or sets the dictionary: file extension => icon image.
         /// </summary>
         public Dictionary<string, VintasoftImage> FileTypeIcons
         {
@@ -392,8 +391,119 @@ namespace ThumbnailViewerDemo
 
         #region Methods
 
+        #region PROTECTED
+
         /// <summary>
-        /// Handles the SelectedFolderRenamed event of FileSystemWatcher object.
+        /// Raises the <see cref="FocusedIndexChanged"/> event.
+        /// </summary>
+        /// <param name="e">An <see cref="FocusedIndexChangedEventArgs"/> that contains the event data.</param>
+        protected override void OnFocusedIndexChanged(FocusedIndexChangedEventArgs e)
+        {
+            base.OnFocusedIndexChanged(e);
+
+            if (e.FocusedIndex > 0)
+                if (!((FileIconTagData)Images[e.FocusedIndex].Tag).IsLoaded)
+                    _thumbnailLoadIndexes.Push(e.FocusedIndex);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="System.Windows.Forms.Control.DragEnter">DragEnter</see> event.
+        /// </summary>
+        /// <param name="drgevent">A <see cref="System.Windows.Forms.DragEventArgs"/>
+        /// that contains the event data.</param>
+        protected override void OnDragEnter(DragEventArgs drgevent)
+        {
+            // allows file copy
+            if (drgevent.Data.GetDataPresent("FileNameW"))
+                base.OnDragEnter(drgevent);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="ThumbnailPainting"/> event.
+        /// </summary>
+        /// <param name="sender">Painting thumbnail.</param>
+        /// <param name="e">A <see cref="ThumbnailPaintEventArgs"/> that contains the event data.</param>
+        protected override void OnThumbnailPainting(object sender, ThumbnailPaintEventArgs e)
+        {
+            if (!e.Handled)
+            {
+                Graphics g = e.Graphics;
+                Thumbnail thumbnail = e.Thumbnail;
+                using (VintasoftImage image = thumbnail.GetThumbnailImage(ThumbnailSize.Width, ThumbnailSize.Height))
+                {
+                    e.Handled = true;
+
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
+
+                    int w = (int)g.VisibleClipBounds.Width;
+                    int h = (int)g.VisibleClipBounds.Height - TextSpaceHeight;
+
+                    Rectangle rect = new Rectangle((w - image.Width) / 2, (h - image.Height) / 2, image.Width, image.Height);
+                    image.Draw(g, rect, new Rectangle(0, 0, image.Width, image.Height));
+
+                    FileIconTagData data = (FileIconTagData)thumbnail.Source.Tag;
+
+                    string textFormat;
+                    if (data.PageCount > 1)
+                        textFormat = ThumbnailMultipageTextFormat;
+                    else
+                        textFormat = ThumbnailTextFormat;
+
+                    string text = string.Format(textFormat, Path.GetFileName(data.Filename), data.PageCount, data.DecoderName);
+
+                    StringFormat format = new StringFormat();
+                    format.Alignment = StringAlignment.Center;
+                    RectangleF textRect = new RectangleF(_textPadding.Left, h + _textPadding.Top, w - _textPadding.Horizontal, TextSpaceHeight - _textPadding.Vertical);
+                    g.DrawString(text, Font, new SolidBrush(ForeColor), textRect, format);
+                }
+
+                base.OnThumbnailPainting(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the
+        /// <see cref="System.Windows.Forms.Control"/> and its child controls and
+        /// optionally releases the managed resources.
+        /// </summary>
+        /// <param name="disposing">A value indicating whether to release both managed and unmanaged resources.
+        /// <b>True</b> to release both managed and unmanaged resources; <b>false</b> to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+            {
+                _fileSystemWatcher.Dispose();
+                StopThumbnailCreationThread();
+
+                if (_errorFileIcon != null)
+                {
+                    _errorFileIcon.Dispose();
+                    _errorFileIcon = null;
+                }
+                if (_defaultFileIcon != null)
+                {
+                    _defaultFileIcon.Dispose();
+                    _defaultFileIcon = null;
+                }
+                VintasoftImage[] images = new VintasoftImage[_fileTypeIcons.Count];
+                _fileTypeIcons.Values.CopyTo(images, 0);
+                _fileTypeIcons.Clear();
+                for (int i = 0; i < images.Length; i++)
+                    images[i].Dispose();
+            }
+        }
+
+        #endregion
+
+
+        #region PRIVATE
+
+        /// <summary>
+        /// Handles the SelectedFolderRenamed event of fileSystemWatcher object.
         /// </summary>
         private void fileSystemWatcher_SelectedFolderRenamed(object sender, RenamedEventArgs e)
         {
@@ -404,7 +514,7 @@ namespace ThumbnailViewerDemo
         }
 
         /// <summary>
-        /// Handles the SelectedFolderChanged event of FileSystemWatcher object.
+        /// Handles the SelectedFolderChanged event of fileSystemWatcher object.
         /// </summary>
         private void fileSystemWatcher_SelectedFolderChanged(object sender, FileSystemEventArgs e)
         {
@@ -413,8 +523,6 @@ namespace ThumbnailViewerDemo
             else
                 SelectedFolderChanged(e);
         }
-
-        delegate void SelectedFolderChangedDelegate(FileSystemEventArgs e);
 
         private void SelectedFolderChanged(FileSystemEventArgs e)
         {
@@ -516,7 +624,6 @@ namespace ThumbnailViewerDemo
                 OnFocusedIndexChanged(new FocusedIndexChangedEventArgs(index, true));
         }
 
-
         private void ReloadIcons()
         {
             lock (_thumbnailLoadIndexes)
@@ -583,62 +690,6 @@ namespace ThumbnailViewerDemo
             _thumbnailCreationThread = null;
         }
 
-        protected override void OnFocusedIndexChanged(FocusedIndexChangedEventArgs e)
-        {
-            base.OnFocusedIndexChanged(e);
-
-            if (e.FocusedIndex > 0)
-                if (!((FileIconTagData)Images[e.FocusedIndex].Tag).IsLoaded)
-                    _thumbnailLoadIndexes.Push(e.FocusedIndex);
-        }
-
-        protected override void OnDragEnter(DragEventArgs drgevent)
-        {
-            // allows file copy
-            if (drgevent.Data.GetDataPresent("FileNameW"))
-                base.OnDragEnter(drgevent);
-        }
-
-        protected override void OnThumbnailPainting(object sender, ThumbnailPaintEventArgs e)
-        {
-            if (!e.Handled)
-            {
-                Graphics g = e.Graphics;
-                Thumbnail thumbnail = e.Thumbnail;
-                using (VintasoftImage image = thumbnail.GetThumbnailImage(ThumbnailSize.Width, ThumbnailSize.Height))
-                {
-                    e.Handled = true;
-
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-
-                    int w = (int)g.VisibleClipBounds.Width;
-                    int h = (int)g.VisibleClipBounds.Height - TextSpaceHeight;
-
-                    Rectangle rect = new Rectangle((w - image.Width) / 2, (h - image.Height) / 2, image.Width, image.Height);
-                    image.Draw(g, rect, new Rectangle(0, 0, image.Width, image.Height));
-
-                    FileIconTagData data = (FileIconTagData)thumbnail.Source.Tag;
-
-                    string textFormat;
-                    if (data.PageCount > 1)
-                        textFormat = ThumbnailMultipageTextFormat;
-                    else
-                        textFormat = ThumbnailTextFormat;
-
-                    string text = string.Format(textFormat, Path.GetFileName(data.Filename), data.PageCount, data.DecoderName);
-
-                    StringFormat format = new StringFormat();
-                    format.Alignment = StringAlignment.Center;
-                    RectangleF textRect = new RectangleF(_textPadding.Left, h + _textPadding.Top, w - _textPadding.Horizontal, TextSpaceHeight - _textPadding.Vertical);
-                    g.DrawString(text, Font, new SolidBrush(ForeColor), textRect, format);
-                }
-
-                base.OnThumbnailPainting(sender, e);
-            }
-        }
-
         /// <summary>
         /// Returns a file thumbnail.
         /// </summary>
@@ -678,32 +729,14 @@ namespace ThumbnailViewerDemo
 
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
+        #endregion
 
-            if (disposing)
-            {
-                _fileSystemWatcher.Dispose();
-                StopThumbnailCreationThread();
+        #endregion
 
-                if (_errorFileIcon != null)
-                {
-                    _errorFileIcon.Dispose();
-                    _errorFileIcon = null;
-                }
-                if (_defaultFileIcon != null)
-                {
-                    _defaultFileIcon.Dispose();
-                    _defaultFileIcon = null;
-                }
-                VintasoftImage[] images = new VintasoftImage[_fileTypeIcons.Count];
-                _fileTypeIcons.Values.CopyTo(images, 0);
-                _fileTypeIcons.Clear();
-                for (int i = 0; i < images.Length; i++)
-                    images[i].Dispose();
-            }
-        }
+
+        #region Delegates
+
+        delegate void SelectedFolderChangedDelegate(FileSystemEventArgs e);
 
         #endregion
 
