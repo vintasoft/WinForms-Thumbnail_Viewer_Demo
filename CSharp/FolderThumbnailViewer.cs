@@ -16,6 +16,9 @@ using DemosCommonCode.Imaging;
 
 namespace ThumbnailViewerDemo
 {
+    /// <summary> 
+    /// Provides a folder thumbnail viewer control.
+    /// </summary>
     public class FolderThumbnailViewer : ThumbnailViewer
     {
 
@@ -218,6 +221,7 @@ namespace ThumbnailViewerDemo
         }
 
         Padding _textPadding;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Padding TextPadding
         {
             get
@@ -279,6 +283,7 @@ namespace ThumbnailViewerDemo
         /// <summary>
         /// Gets or sets the current folder.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string SelectedFolder
         {
             get
@@ -330,6 +335,7 @@ namespace ThumbnailViewerDemo
         /// Gets or sets an icon of file with errors.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public VintasoftImage ErrorFileIcon
         {
             get
@@ -352,6 +358,7 @@ namespace ThumbnailViewerDemo
         /// Gets or sets the default icon of file.
         /// </summary>
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public VintasoftImage DefaultFileIcon
         {
             get

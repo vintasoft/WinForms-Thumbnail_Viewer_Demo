@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -142,6 +143,7 @@ namespace ThumbnailViewerDemo
         /// <summary>
         /// Gets or sets the selected folder.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string SelectedFolder
         {
             get
