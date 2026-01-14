@@ -1,4 +1,4 @@
-# VintaSoft WinForms Thumbnail Viewer Demo
+﻿# VintaSoft WinForms Thumbnail Viewer Demo
 
 This C# project uses <a href="https://www.vintasoft.com/vsimaging-dotnet-index.html">VintaSoft Imaging .NET SDK</a> and demonstrates how to view thumbnails of images and document pages in WinForms:
 * Synchronous work of "folder" thumbnail viewer, "file" thumbnail viewer and image viewer.
@@ -22,9 +22,9 @@ This C# project uses <a href="https://www.vintasoft.com/vsimaging-dotnet-index.h
    Vintasoft.Imaging.ImagingGlobalSettings.Register("REG_USER", "REG_EMAIL", "EXPIRATION_DATE", "REG_CODE");
    ```
 
-3. Build the project ("ThumbnailViewerDemo.Net8.csproj" file) in Visual Studio or using .NET CLI:
+3. Build the project ("ThumbnailViewerDemo.Net10.csproj" file) in Visual Studio or using .NET CLI:
    ```
-   dotnet build ThumbnailViewerDemo.Net8.csproj
+   dotnet build ThumbnailViewerDemo.Net10.csproj
    ```
 
 4. Run compiled application and try to view thumbnails of images and document pages.
