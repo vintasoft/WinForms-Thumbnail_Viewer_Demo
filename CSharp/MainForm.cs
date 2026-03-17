@@ -10,9 +10,9 @@ using Vintasoft.Imaging;
 using Vintasoft.Imaging.Codecs.Encoders;
 using Vintasoft.Imaging.UI;
 
-using DemosCommonCode;
-using DemosCommonCode.Imaging.Codecs;
-using DemosCommonCode.Imaging;
+using CommonCode;
+using CommonCode.Imaging.Codecs;
+using CommonCode.Imaging;
 
 namespace ThumbnailViewerDemo
 {

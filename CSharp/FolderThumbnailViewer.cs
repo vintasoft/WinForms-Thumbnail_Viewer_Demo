@@ -12,7 +12,7 @@ using Vintasoft.Imaging.Codecs.Decoders;
 using Vintasoft.Imaging.ImageProcessing;
 using Vintasoft.Imaging.UI;
 
-using DemosCommonCode.Imaging;
+using CommonCode.Imaging;
 
 namespace ThumbnailViewerDemo
 {
