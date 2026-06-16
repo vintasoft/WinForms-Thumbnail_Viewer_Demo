@@ -25,6 +25,21 @@ namespace ThumbnailViewerDemo
         #region Constructors
 
         /// <summary>
+        /// Initializes the <see cref="MainForm"/> class.
+        /// </summary>
+        static MainForm()
+        {
+            Jbig2AssemblyLoader.Load();
+            Jpeg2000AssemblyLoader.Load();
+            RawAssemblyLoader.Load();
+            DicomAssemblyLoader.Load();
+            DocxAssemblyLoader.Load();
+
+            // set CustomFontProgramsController for all opened documents
+            CustomFontProgramsController.SetDefaultFontProgramsController();
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -33,12 +48,6 @@ namespace ThumbnailViewerDemo
             Vintasoft.Imaging.ImagingGlobalSettings.Register("REG_USER", "REG_EMAIL", "EXPIRATION_DATE", "REG_CODE");
 
             InitializeComponent();
-
-            Jbig2AssemblyLoader.Load();
-            Jpeg2000AssemblyLoader.Load();
-            RawAssemblyLoader.Load();
-            DicomAssemblyLoader.Load();
-            DocxAssemblyLoader.Load();
 
             Text = string.Format("VintaSoft Thumbnail Viewer Demo v{0}", ImagingGlobalSettings.ProductVersion);
 
@@ -125,9 +134,6 @@ namespace ThumbnailViewerDemo
 
             icon = DemosResourcesManager.GetResourceAsImage("iconXLSX.png");
             folderViewer.FileTypeIcons.Add(".XLSX", icon);
-
-            // set CustomFontProgramsController for all opened documents
-            CustomFontProgramsController.SetDefaultFontProgramsController();
 
             DocumentPasswordForm.EnableAuthentication(fileThumbnailViewer);
 
