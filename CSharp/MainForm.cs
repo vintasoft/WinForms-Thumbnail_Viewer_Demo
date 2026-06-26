@@ -34,6 +34,7 @@ namespace ThumbnailViewerDemo
             RawAssemblyLoader.Load();
             DicomAssemblyLoader.Load();
             DocxAssemblyLoader.Load();
+            CadCodecAssemblyLoader.Load();
 
             // set CustomFontProgramsController for all opened documents
             CustomFontProgramsController.SetDefaultFontProgramsController();
@@ -135,6 +136,18 @@ namespace ThumbnailViewerDemo
             icon = DemosResourcesManager.GetResourceAsImage("iconXLSX.png");
             folderViewer.FileTypeIcons.Add(".XLSX", icon);
 
+            icon = DemosResourcesManager.GetResourceAsImage("iconPPTX.png");
+            folderViewer.FileTypeIcons.Add(".PPTX", icon);
+
+            icon = DemosResourcesManager.GetResourceAsImage("iconSVG.png");
+            folderViewer.FileTypeIcons.Add(".SVG", icon);
+
+            icon = DemosResourcesManager.GetResourceAsImage("iconDXF.png");
+            folderViewer.FileTypeIcons.Add(".DXF", icon);
+
+            icon = DemosResourcesManager.GetResourceAsImage("iconDWG.png");
+            folderViewer.FileTypeIcons.Add(".DWG", icon);
+            
             DocumentPasswordForm.EnableAuthentication(fileThumbnailViewer);
 
             DemosTools.SetTestFilesFolder(folderBrowserDialog1);

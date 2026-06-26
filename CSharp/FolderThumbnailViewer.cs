@@ -154,7 +154,8 @@ namespace ThumbnailViewerDemo
                 ".EMF",
                 ".ICO",
                 ".PCX",
-                ".JLS"
+                ".JLS",
+                ".SVG"
             });
             // PDF
             if (AvailableDecoders.IsDecoderAvailable("Pdf"))
@@ -196,6 +197,17 @@ namespace ThumbnailViewerDemo
             if (AvailableDecoders.IsDecoderAvailable("Xlsx"))
             {
                 _imageFileExtensions.Add(".XLSX");
+            }
+            // PPTX
+            if (AvailableDecoders.IsDecoderAvailable("Pptx"))
+            {
+                _imageFileExtensions.Add(".PPTX");
+            }
+            // CAD
+            if (AvailableDecoders.IsDecoderAvailable("Cad"))
+            {
+                _imageFileExtensions.Add(".DWG");
+                _imageFileExtensions.Add(".DXF");
             }
         }
 
