@@ -1,18 +1,17 @@
-﻿using System;
+﻿using CommonCode;
+using CommonCode.Imaging;
+using CommonCode.Imaging.Codecs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
 using Vintasoft.Imaging;
 using Vintasoft.Imaging.Codecs.Encoders;
 using Vintasoft.Imaging.UI;
-
-using CommonCode;
-using CommonCode.Imaging.Codecs;
-using CommonCode.Imaging;
 
 namespace ThumbnailViewerDemo
 {
@@ -39,7 +38,7 @@ namespace ThumbnailViewerDemo
             // set CustomFontProgramsController for all opened documents
             CustomFontProgramsController.SetDefaultFontProgramsController();
         }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
@@ -52,11 +51,12 @@ namespace ThumbnailViewerDemo
 
             Text = string.Format("VintaSoft Thumbnail Viewer Demo v{0}", ImagingGlobalSettings.ProductVersion);
 
+            ImagingEnvironment.ExternalResourceManager.CreatingResourceStream += ExternalResourceManager_CreatingResourceStream;
+            ImagingEnvironment.ExternalResourceManager.CreatedResourceStream += ExternalResourceManager_CreatedResourceStream;
+
             containerThumbnailViewer.Images.ImageCollectionSavingProgress += new EventHandler<ProgressEventArgs>(ContainerImages_ImageCollectionSavingProgress);
             containerThumbnailViewer.Images.ImageSavingException += new EventHandler<ExceptionEventArgs>(ContainerImages_ImageSavingException);
             containerThumbnailViewer.Images.ImageCollectionChanged += new EventHandler<ImageCollectionChangeEventArgs>(ContainerImages_ImageCollectionChanged);
-
-            folderViewer.ThumbnailMultipageTextFormat = "{0}\n({1} pages)";
 
             folderFlowStyleToolStripComboBox.Items.Add(ThumbnailFlowStyle.SingleRow);
             folderFlowStyleToolStripComboBox.Items.Add(ThumbnailFlowStyle.WrappedRows);
@@ -68,89 +68,14 @@ namespace ThumbnailViewerDemo
 
             folderViewer.ThumbnailControlCreating += folderViewer_ThumbnailControlCreating;
             folderViewer.ThumbnailControlDisposing += folderViewer_ThumbnailControlDisposing;
-            folderViewer.SelectedIndices.Changed += folderViewer_SelectedIndices_Changed;
-
-            folderViewer.DefaultFileIcon = DemosResourcesManager.GetResourceAsImage("iconDefault.png");
-            folderViewer.ErrorFileIcon = DemosResourcesManager.GetResourceAsImage("iconError.png");
-
-            VintasoftImage icon;
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconBMP.png");
-            folderViewer.FileTypeIcons.Add(".BMP", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconPNG.png");
-            folderViewer.FileTypeIcons.Add(".PNG", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconGIF.png");
-            folderViewer.FileTypeIcons.Add(".GIF", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconPDF.png");
-            folderViewer.FileTypeIcons.Add(".PDF", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconTIFF.png");
-            folderViewer.FileTypeIcons.Add(".TIF", icon);
-            folderViewer.FileTypeIcons.Add(".TIFF", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconJPEG.png");
-            folderViewer.FileTypeIcons.Add(".JPEG", icon);
-            folderViewer.FileTypeIcons.Add(".JPG", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconJPEG2000.png");
-            folderViewer.FileTypeIcons.Add(".JP2", icon);
-            folderViewer.FileTypeIcons.Add(".J2K", icon);
-            folderViewer.FileTypeIcons.Add(".J2C", icon);
-            folderViewer.FileTypeIcons.Add(".JPC", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconJBIG2.png");
-            folderViewer.FileTypeIcons.Add(".JB2", icon);
-            folderViewer.FileTypeIcons.Add(".JBIG2", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconEMF.png");
-            folderViewer.FileTypeIcons.Add(".EMF", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconWMF.png");
-            folderViewer.FileTypeIcons.Add(".WMF", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconICO.png");
-            folderViewer.FileTypeIcons.Add(".ICO", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconPCX.png");
-            folderViewer.FileTypeIcons.Add(".PCX", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconDICOM.png");
-            folderViewer.FileTypeIcons.Add(".DCM", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconJPEG-LS.png");
-            folderViewer.FileTypeIcons.Add(".JLS", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconRAW.png");
-            folderViewer.FileTypeIcons.Add(".CR2", icon);
-            folderViewer.FileTypeIcons.Add(".CRW", icon);
-            folderViewer.FileTypeIcons.Add(".NEF", icon);
-            folderViewer.FileTypeIcons.Add(".NRW", icon);
-            folderViewer.FileTypeIcons.Add(".DNG", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconDOCX.png");
-            folderViewer.FileTypeIcons.Add(".DOCX", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconXLSX.png");
-            folderViewer.FileTypeIcons.Add(".XLSX", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconPPTX.png");
-            folderViewer.FileTypeIcons.Add(".PPTX", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconSVG.png");
-            folderViewer.FileTypeIcons.Add(".SVG", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconDXF.png");
-            folderViewer.FileTypeIcons.Add(".DXF", icon);
-
-            icon = DemosResourcesManager.GetResourceAsImage("iconDWG.png");
-            folderViewer.FileTypeIcons.Add(".DWG", icon);
+            folderViewer.SelectedIndices.Changed += folderViewer_SelectedIndices_Changed;            
             
             DocumentPasswordForm.EnableAuthentication(fileThumbnailViewer);
 
             DemosTools.SetTestFilesFolder(folderBrowserDialog1);
+
+            SetStatus("");
+
         }
 
         #endregion
@@ -167,12 +92,12 @@ namespace ThumbnailViewerDemo
         {
             get
             {
-                return folderViewer.SelectedFolder;
+                return folderViewer.FolderPath;
             }
             set
             {
                 folderGroupBox.Text = value;
-                folderViewer.SelectedFolder = value;
+                folderViewer.FolderPath = value;
             }
         }
 
@@ -334,7 +259,7 @@ namespace ThumbnailViewerDemo
             if (e.Data.GetDataPresent("FileNameW"))
             {
                 string[] filenames = (string[])e.Data.GetData("FileNameW");
-                CopyFiles(filenames, folderViewer.SelectedFolder);
+                CopyFiles(filenames, folderViewer.FolderPath);
             }
         }
 
@@ -417,12 +342,7 @@ namespace ThumbnailViewerDemo
             {
                 // Drag&Drop from FolderThumbnailViewer
                 e.Effect = DragDropEffects.None;
-                filenames = new string[folderViewer.SelectedIndices.Count];
-                for (int i = 0; i < folderViewer.SelectedIndices.Count; i++)
-                {
-                    VintasoftImage fileThumbnail = folderViewer.Images[folderViewer.SelectedIndices[i]];
-                    filenames[i] = ((FolderThumbnailViewer.FileIconTagData)fileThumbnail.Tag).Filename;
-                }
+                filenames = folderViewer.GetSelectedFilenames();
             }
             else if (e.Data.GetDataPresent(typeof(ThumbnailViewer)))
             {
@@ -468,6 +388,14 @@ namespace ThumbnailViewerDemo
         #region Folder Viewer
 
         /// <summary>
+        /// Handles the AuthenticationRequest event of folderViewer object.
+        /// </summary>
+        private void folderViewer_AuthenticationRequest(object sender, DocumentAuthenticationRequestEventArgs e)
+        {
+            DocumentPasswordForm.Authenticate(e.Decoder);
+        }
+
+        /// <summary>
         /// Handles the DeleteKeyPressed event of folderViewer object.
         /// </summary>
         private void folderViewer_DeleteKeyPressed(object sender, KeyEventArgs e)
@@ -478,25 +406,18 @@ namespace ThumbnailViewerDemo
                 string message;
                 if (folderViewer.SelectedIndices.Count > 1)
                 {
-                    message = string.Format("Delete selected files({0}) form disk?", folderViewer.SelectedIndices.Count);
+                    message = string.Format("Delete selected files ({0}) form disk?", folderViewer.SelectedIndices.Count);
                 }
                 else
                 {
-                    string filename = ((FolderThumbnailViewer.FileIconTagData)folderViewer.Images[folderViewer.SelectedIndices[0]].Tag).Filename;
-                    message = string.Format("Delete file '{0}' from disk?", Path.GetFileName(filename));
+                    message = string.Format("Delete file '{0}' from disk?", Path.GetFileName(folderViewer.FocusedFilename));
                 }
                 if (MessageBox.Show(message, "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    HashSet<string> filesToRemove = new HashSet<string>();
-                    foreach (int index in folderViewer.SelectedIndices.ToArray())
+                    foreach (string filename in folderViewer.GetSelectedFilenames())
                     {
-                        if (index == folderViewer.FocusedIndex)
-                            folderViewer.FocusedIndex = -1;
-                        string filename = ((FolderThumbnailViewer.FileIconTagData)folderViewer.Images[index].Tag).Filename;
-                        filesToRemove.Add(filename);                        
-                    }
-                    foreach(string filename in filesToRemove)
-                    {
+                        if (folderViewer.FocusedFilename == filename)
+                            folderViewer.FocusedFilename = null;
                         try
                         {
                             File.Delete(filename);
@@ -686,6 +607,30 @@ namespace ThumbnailViewerDemo
 
         #endregion
 
+        /// <summary>
+        /// Handles the CreatedResourceStream event of ExternalResourceManager object.
+        /// </summary>
+        private void ExternalResourceManager_CreatedResourceStream(object sender, ExternalResourceStreamEventArgs e)
+        {
+            SetStatus("");
+        }
+
+        /// <summary>
+        /// Handles the CreatingResourceStream event of ExternalResourceManager object.
+        /// </summary>
+        private void ExternalResourceManager_CreatingResourceStream(object sender, ExternalResourceStreamEventArgs e)
+        {
+            if (!e.Uri.IsFile)
+                SetStatus(string.Format("Download file {0}...", e.Uri));
+        }
+
+        private void SetStatus(object status)
+        {
+            if (InvokeRequired)
+                Invoke(new ParameterizedThreadStart(SetStatus), status);
+            else
+                statusLabel.Text = status.ToString();
+        }
 
         /// <summary>
         /// Handles the ThumbnailsLoadingProgress event of fileThumbnailViewer object.
@@ -719,7 +664,7 @@ namespace ThumbnailViewerDemo
             CloseCurrentFile();
             if (folderViewer.FocusedIndex >= 0)
             {
-                string filename = ((FolderThumbnailViewer.FileIconTagData)folderViewer.Images[folderViewer.FocusedIndex].Tag).Filename;
+                string filename = folderViewer.FocusedFilename;
                 try
                 {
                     fileGroupBox.Text = Path.GetFileName(filename);

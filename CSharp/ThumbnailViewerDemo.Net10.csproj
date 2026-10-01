@@ -12,7 +12,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>    
     <EnableDefaultItems>false</EnableDefaultItems>
-    <Version>15.1.9.1</Version>
+    <Version>15.2.0.1</Version>
     <AssemblyName>ThumbnailViewerDemo</AssemblyName>
     <RootNamespace>ThumbnailViewerDemo</RootNamespace>
     <StartupObject>ThumbnailViewerDemo.Program</StartupObject>
@@ -30,25 +30,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.IO.Packaging" Version="10.0.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Vintasoft.Imaging" Version="15.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.CadCodec" Version="15.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.Gdi" Version="15.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.Dicom" Version="8.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.DocCleanup" Version="10.1.1.1" />
-    <PackageReference Include="Vintasoft.Imaging.Jbig2Codec" Version="12.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.Jpeg2000Codec" Version="10.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.Office.OpenXml" Version="7.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.Pdf" Version="12.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.Pdf.Mrc" Version="12.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.RawCodec" Version="15.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.UI" Version="15.1.9.1" />
-    <PackageReference Include="Vintasoft.Imaging.WebpCodec" Version="15.1.9.1" />
-    <PackageReference Include="Vintasoft.Shared" Version="4.6.3.1" />
+    <PackageReference Include="Vintasoft.Imaging" Version="15.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.CadCodec" Version="15.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Gdi" Version="15.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Dicom" Version="8.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.DocCleanup" Version="10.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Jbig2Codec" Version="12.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Jpeg2000Codec" Version="10.1.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Office.OpenXml" Version="7.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Pdf" Version="12.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.Pdf.Mrc" Version="12.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.RawCodec" Version="15.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.UI" Version="15.2.0.1" />
+    <PackageReference Include="Vintasoft.Imaging.WebpCodec" Version="15.2.0.1" />
+    <PackageReference Include="Vintasoft.Shared" Version="4.7.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemosCommonCode.Imaging\ActionProgressForm.cs">
@@ -189,9 +184,6 @@
     <Compile Include="Dialogs\AboutBoxForm.Designer.cs">
       <DependentUpon>AboutBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FolderThumbnailViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,10 +192,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Resources\iconDWG.png" />
-    <EmbeddedResource Include="Resources\iconDXF.png" />
-    <EmbeddedResource Include="Resources\iconPPTX.png" />
-    <EmbeddedResource Include="Resources\iconSVG.png" />
     <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\PbmEncoderSettingsForm.resx">
       <DependentUpon>PbmEncoderSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,7 +201,6 @@
     <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\WebpEncoderSettingsForm.resx">
       <DependentUpon>WebpEncoderSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\iconDOCX.png" />
     <EmbeddedResource Include="DemosCommonCode.Imaging\Codecs\ImagingEncoderFactory\Dialogs\SvgEncoderSettingsForm.resx">
       <DependentUpon>SvgEncoderSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,23 +257,5 @@
     <EmbeddedResource Include="DemosCommonCode\AboutBoxBaseForm.resx">
       <DependentUpon>AboutBoxBaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\iconBMP.png" />
-    <EmbeddedResource Include="Resources\iconDefault.png" />
-    <EmbeddedResource Include="Resources\iconDICOM.png" />
-    <EmbeddedResource Include="Resources\iconEMF.png" />
-    <EmbeddedResource Include="Resources\iconError.png" />
-    <EmbeddedResource Include="Resources\iconGIF.png" />
-    <EmbeddedResource Include="Resources\iconICO.png" />
-    <EmbeddedResource Include="Resources\iconJBIG2.png" />
-    <EmbeddedResource Include="Resources\iconJPEG-LS.png" />
-    <EmbeddedResource Include="Resources\iconJPEG.png" />
-    <EmbeddedResource Include="Resources\iconJPEG2000.png" />
-    <EmbeddedResource Include="Resources\iconPCX.png" />
-    <EmbeddedResource Include="Resources\iconPDF.png" />
-    <EmbeddedResource Include="Resources\iconPNG.png" />
-    <EmbeddedResource Include="Resources\iconRAW.png" />
-    <EmbeddedResource Include="Resources\iconTIFF.png" />
-    <EmbeddedResource Include="Resources\iconWMF.png" />
-    <EmbeddedResource Include="Resources\iconXLSX.png" />
   </ItemGroup>
 </Project>

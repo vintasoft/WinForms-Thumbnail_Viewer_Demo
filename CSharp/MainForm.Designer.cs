@@ -33,17 +33,20 @@ namespace ThumbnailViewerDemo
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance3 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance4 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance5 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailCaption thumbnailCaption1 = new Vintasoft.Imaging.UI.ThumbnailCaption();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance6 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance7 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance8 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance9 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance10 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            Vintasoft.Imaging.UI.ThumbnailCaption thumbnailCaption2 = new Vintasoft.Imaging.UI.ThumbnailCaption();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance11 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance12 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance13 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance14 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance15 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailCaption thumbnailCaption3 = new Vintasoft.Imaging.UI.ThumbnailCaption();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,9 +88,11 @@ namespace ThumbnailViewerDemo
             this.containerProgressBar = new System.Windows.Forms.ProgressBar();
             this.folderGroupBox = new System.Windows.Forms.GroupBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.folderViewer = new Vintasoft.Imaging.UI.FolderThumbnailViewer();
             this.saveImageFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.folderViewer = new ThumbnailViewerDemo.FolderThumbnailViewer();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -112,6 +117,7 @@ namespace ThumbnailViewerDemo
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -198,7 +204,7 @@ namespace ThumbnailViewerDemo
             this.folderFlowStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.folderFlowStyleToolStripComboBox});
             this.folderFlowStyleToolStripMenuItem.Name = "folderFlowStyleToolStripMenuItem";
-            this.folderFlowStyleToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.folderFlowStyleToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.folderFlowStyleToolStripMenuItem.Text = "Folder Flow Style";
             // 
             // folderFlowStyleToolStripComboBox
@@ -213,7 +219,7 @@ namespace ThumbnailViewerDemo
             this.fileFlowStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileFlowStyleToolStripComboBox});
             this.fileFlowStyleToolStripMenuItem.Name = "fileFlowStyleToolStripMenuItem";
-            this.fileFlowStyleToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.fileFlowStyleToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.fileFlowStyleToolStripMenuItem.Text = "File Flow Style";
             // 
             // fileFlowStyleToolStripComboBox
@@ -227,7 +233,7 @@ namespace ThumbnailViewerDemo
             // 
             this.selectionCheckBoxToolStripMenuItem.CheckOnClick = true;
             this.selectionCheckBoxToolStripMenuItem.Name = "selectionCheckBoxToolStripMenuItem";
-            this.selectionCheckBoxToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.selectionCheckBoxToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.selectionCheckBoxToolStripMenuItem.Text = "Selection CheckBox";
             this.selectionCheckBoxToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.selectionCheckBoxToolStripMenuItem_CheckStateChanged);
             // 
@@ -253,7 +259,7 @@ namespace ThumbnailViewerDemo
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 416);
+            this.panel1.Size = new System.Drawing.Size(784, 405);
             this.panel1.TabIndex = 1;
             // 
             // panel3
@@ -262,7 +268,7 @@ namespace ThumbnailViewerDemo
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(784, 416);
+            this.panel3.Size = new System.Drawing.Size(784, 405);
             this.panel3.TabIndex = 1;
             // 
             // splitContainer2
@@ -280,7 +286,7 @@ namespace ThumbnailViewerDemo
             // 
             this.splitContainer2.Panel2.Controls.Add(this.viewersTabControl);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.splitContainer2.Size = new System.Drawing.Size(784, 416);
+            this.splitContainer2.Size = new System.Drawing.Size(784, 405);
             this.splitContainer2.SplitterDistance = 261;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -292,7 +298,7 @@ namespace ThumbnailViewerDemo
             this.fileGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.fileGroupBox.Location = new System.Drawing.Point(2, 0);
             this.fileGroupBox.Name = "fileGroupBox";
-            this.fileGroupBox.Size = new System.Drawing.Size(257, 416);
+            this.fileGroupBox.Size = new System.Drawing.Size(257, 405);
             this.fileGroupBox.TabIndex = 0;
             this.fileGroupBox.TabStop = false;
             this.fileGroupBox.Text = "File";
@@ -303,13 +309,12 @@ namespace ThumbnailViewerDemo
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 16);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(251, 378);
+            this.panel4.Size = new System.Drawing.Size(251, 367);
             this.panel4.TabIndex = 1;
             // 
             // fileThumbnailViewer
             // 
             this.fileThumbnailViewer.AllowDrop = true;
-            this.fileThumbnailViewer.AutoScroll = true;
             this.fileThumbnailViewer.AutoScrollMinSize = new System.Drawing.Size(1, 1);
             this.fileThumbnailViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fileThumbnailViewer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -324,6 +329,7 @@ namespace ThumbnailViewerDemo
             thumbnailAppearance2.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             thumbnailAppearance2.BorderWidth = 2;
             this.fileThumbnailViewer.HoveredThumbnailAppearance = thumbnailAppearance2;
+            this.fileThumbnailViewer.ImageRotationAngle = 0;
             this.fileThumbnailViewer.Location = new System.Drawing.Point(0, 0);
             this.fileThumbnailViewer.Name = "fileThumbnailViewer";
             thumbnailAppearance3.BackColor = System.Drawing.Color.Black;
@@ -336,7 +342,7 @@ namespace ThumbnailViewerDemo
             thumbnailAppearance4.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             thumbnailAppearance4.BorderWidth = 1;
             this.fileThumbnailViewer.SelectedThumbnailAppearance = thumbnailAppearance4;
-            this.fileThumbnailViewer.Size = new System.Drawing.Size(251, 378);
+            this.fileThumbnailViewer.Size = new System.Drawing.Size(251, 367);
             this.fileThumbnailViewer.TabIndex = 0;
             this.fileThumbnailViewer.Text = "thumbnailViewer1";
             thumbnailAppearance5.BackColor = System.Drawing.Color.Transparent;
@@ -344,6 +350,9 @@ namespace ThumbnailViewerDemo
             thumbnailAppearance5.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             thumbnailAppearance5.BorderWidth = 1;
             this.fileThumbnailViewer.ThumbnailAppearance = thumbnailAppearance5;
+            thumbnailCaption1.Padding = new Vintasoft.Imaging.PaddingF(0F, 0F, 0F, 0F);
+            thumbnailCaption1.TextColor = System.Drawing.Color.Black;
+            this.fileThumbnailViewer.ThumbnailCaption = thumbnailCaption1;
             this.fileThumbnailViewer.ThumbnailFlowStyle = Vintasoft.Imaging.UI.ThumbnailFlowStyle.WrappedRows;
             this.fileThumbnailViewer.ThumbnailMargin = new System.Windows.Forms.Padding(3);
             this.fileThumbnailViewer.ThumbnailSize = new System.Drawing.Size(100, 100);
@@ -355,7 +364,7 @@ namespace ThumbnailViewerDemo
             // 
             this.panel5.Controls.Add(this.fileProgressBar);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(3, 394);
+            this.panel5.Location = new System.Drawing.Point(3, 383);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.panel5.Size = new System.Drawing.Size(251, 19);
@@ -377,7 +386,7 @@ namespace ThumbnailViewerDemo
             this.viewersTabControl.Location = new System.Drawing.Point(2, 0);
             this.viewersTabControl.Name = "viewersTabControl";
             this.viewersTabControl.SelectedIndex = 0;
-            this.viewersTabControl.Size = new System.Drawing.Size(515, 416);
+            this.viewersTabControl.Size = new System.Drawing.Size(515, 405);
             this.viewersTabControl.TabIndex = 1;
             this.viewersTabControl.SelectedIndexChanged += new System.EventHandler(this.viewersTabControl_SelectedIndexChanged);
             // 
@@ -388,7 +397,7 @@ namespace ThumbnailViewerDemo
             this.imageTabPage.Location = new System.Drawing.Point(4, 22);
             this.imageTabPage.Name = "imageTabPage";
             this.imageTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.imageTabPage.Size = new System.Drawing.Size(507, 390);
+            this.imageTabPage.Size = new System.Drawing.Size(507, 379);
             this.imageTabPage.TabIndex = 0;
             this.imageTabPage.Text = "Image";
             this.imageTabPage.UseVisualStyleBackColor = true;
@@ -400,7 +409,7 @@ namespace ThumbnailViewerDemo
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(3, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(501, 365);
+            this.panel9.Size = new System.Drawing.Size(501, 354);
             this.panel9.TabIndex = 1;
             // 
             // panel11
@@ -409,19 +418,18 @@ namespace ThumbnailViewerDemo
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 31);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(501, 334);
+            this.panel11.Size = new System.Drawing.Size(501, 323);
             this.panel11.TabIndex = 1;
             // 
             // pageImageViewer
             // 
-            this.pageImageViewer.AutoScroll = true;
             this.pageImageViewer.BackColor = System.Drawing.SystemColors.Control;
             this.pageImageViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pageImageViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageImageViewer.Location = new System.Drawing.Point(0, 0);
             this.pageImageViewer.MasterViewer = this.fileThumbnailViewer;
             this.pageImageViewer.Name = "pageImageViewer";
-            this.pageImageViewer.Size = new System.Drawing.Size(501, 334);
+            this.pageImageViewer.Size = new System.Drawing.Size(501, 323);
             this.pageImageViewer.SizeMode = Vintasoft.Imaging.UI.ImageSizeMode.Zoom;
             this.pageImageViewer.TabIndex = 0;
             this.pageImageViewer.Text = "imageViewer1";
@@ -453,7 +461,7 @@ namespace ThumbnailViewerDemo
             // 
             this.panel8.Controls.Add(this.imageProgressBar);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(3, 368);
+            this.panel8.Location = new System.Drawing.Point(3, 357);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.panel8.Size = new System.Drawing.Size(501, 19);
@@ -474,7 +482,7 @@ namespace ThumbnailViewerDemo
             this.containerTabPage.Location = new System.Drawing.Point(4, 22);
             this.containerTabPage.Name = "containerTabPage";
             this.containerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.containerTabPage.Size = new System.Drawing.Size(507, 390);
+            this.containerTabPage.Size = new System.Drawing.Size(507, 379);
             this.containerTabPage.TabIndex = 1;
             this.containerTabPage.Text = "Container (use Drag&&Drop)";
             this.containerTabPage.UseVisualStyleBackColor = true;
@@ -485,13 +493,12 @@ namespace ThumbnailViewerDemo
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(501, 365);
+            this.panel2.Size = new System.Drawing.Size(501, 354);
             this.panel2.TabIndex = 3;
             // 
             // containerThumbnailViewer
             // 
             this.containerThumbnailViewer.AllowDrop = true;
-            this.containerThumbnailViewer.AutoScroll = true;
             this.containerThumbnailViewer.AutoScrollMinSize = new System.Drawing.Size(1, 1);
             this.containerThumbnailViewer.BackColor = System.Drawing.Color.White;
             this.containerThumbnailViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -507,6 +514,7 @@ namespace ThumbnailViewerDemo
             thumbnailAppearance7.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             thumbnailAppearance7.BorderWidth = 2;
             this.containerThumbnailViewer.HoveredThumbnailAppearance = thumbnailAppearance7;
+            this.containerThumbnailViewer.ImageRotationAngle = 0;
             this.containerThumbnailViewer.Location = new System.Drawing.Point(0, 0);
             this.containerThumbnailViewer.Name = "containerThumbnailViewer";
             thumbnailAppearance8.BackColor = System.Drawing.Color.Black;
@@ -519,7 +527,7 @@ namespace ThumbnailViewerDemo
             thumbnailAppearance9.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             thumbnailAppearance9.BorderWidth = 1;
             this.containerThumbnailViewer.SelectedThumbnailAppearance = thumbnailAppearance9;
-            this.containerThumbnailViewer.Size = new System.Drawing.Size(501, 365);
+            this.containerThumbnailViewer.Size = new System.Drawing.Size(501, 354);
             this.containerThumbnailViewer.TabIndex = 0;
             this.containerThumbnailViewer.Text = "thumbnailViewer1";
             thumbnailAppearance10.BackColor = System.Drawing.Color.Transparent;
@@ -527,6 +535,9 @@ namespace ThumbnailViewerDemo
             thumbnailAppearance10.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             thumbnailAppearance10.BorderWidth = 1;
             this.containerThumbnailViewer.ThumbnailAppearance = thumbnailAppearance10;
+            thumbnailCaption2.Padding = new Vintasoft.Imaging.PaddingF(0F, 0F, 0F, 0F);
+            thumbnailCaption2.TextColor = System.Drawing.Color.Black;
+            this.containerThumbnailViewer.ThumbnailCaption = thumbnailCaption2;
             this.containerThumbnailViewer.ThumbnailFlowStyle = Vintasoft.Imaging.UI.ThumbnailFlowStyle.WrappedRows;
             this.containerThumbnailViewer.ThumbnailMargin = new System.Windows.Forms.Padding(3);
             this.containerThumbnailViewer.ThumbnailSize = new System.Drawing.Size(100, 100);
@@ -538,7 +549,7 @@ namespace ThumbnailViewerDemo
             // 
             this.panel7.Controls.Add(this.containerProgressBar);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(3, 368);
+            this.panel7.Location = new System.Drawing.Point(3, 357);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.panel7.Size = new System.Drawing.Size(501, 19);
@@ -559,7 +570,7 @@ namespace ThumbnailViewerDemo
             this.folderGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.folderGroupBox.Location = new System.Drawing.Point(0, 0);
             this.folderGroupBox.Name = "folderGroupBox";
-            this.folderGroupBox.Size = new System.Drawing.Size(784, 320);
+            this.folderGroupBox.Size = new System.Drawing.Size(784, 310);
             this.folderGroupBox.TabIndex = 0;
             this.folderGroupBox.TabStop = false;
             this.folderGroupBox.Text = "Folder";
@@ -570,12 +581,70 @@ namespace ThumbnailViewerDemo
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 16);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(778, 301);
+            this.panel6.Size = new System.Drawing.Size(778, 291);
             this.panel6.TabIndex = 3;
+            // 
+            // folderViewer
+            // 
+            this.folderViewer.AllowDrop = true;
+            this.folderViewer.AutoScrollMinSize = new System.Drawing.Size(1, 1);
+            this.folderViewer.BackColor = System.Drawing.Color.White;
+            this.folderViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.folderViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            thumbnailAppearance11.BackColor = System.Drawing.Color.Transparent;
+            thumbnailAppearance11.BorderColor = System.Drawing.Color.Gray;
+            thumbnailAppearance11.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Dotted;
+            thumbnailAppearance11.BorderWidth = 1;
+            this.folderViewer.FocusedThumbnailAppearance = thumbnailAppearance11;
+            this.folderViewer.FolderPath = null;
+            this.folderViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            thumbnailAppearance12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
+            thumbnailAppearance12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
+            thumbnailAppearance12.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance12.BorderWidth = 2;
+            this.folderViewer.HoveredThumbnailAppearance = thumbnailAppearance12;
+            this.folderViewer.ImageRotationAngle = 0;
+            this.folderViewer.Location = new System.Drawing.Point(0, 0);
+            this.folderViewer.Name = "folderViewer";
+            thumbnailAppearance13.BackColor = System.Drawing.Color.Black;
+            thumbnailAppearance13.BorderColor = System.Drawing.Color.Black;
+            thumbnailAppearance13.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance13.BorderWidth = 0;
+            this.folderViewer.NotReadyThumbnailAppearance = thumbnailAppearance13;
+            thumbnailAppearance14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(238)))), ((int)(((byte)(253)))));
+            thumbnailAppearance14.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(222)))), ((int)(((byte)(253)))));
+            thumbnailAppearance14.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance14.BorderWidth = 1;
+            this.folderViewer.SelectedThumbnailAppearance = thumbnailAppearance14;
+            this.folderViewer.ShortcutCopy = System.Windows.Forms.Shortcut.None;
+            this.folderViewer.ShortcutCut = System.Windows.Forms.Shortcut.None;
+            this.folderViewer.ShortcutInsert = System.Windows.Forms.Shortcut.None;
+            this.folderViewer.Size = new System.Drawing.Size(778, 291);
+            this.folderViewer.TabIndex = 0;
+            this.folderViewer.Text = "folderThumbnailViewer";
+            thumbnailAppearance15.BackColor = System.Drawing.Color.White;
+            thumbnailAppearance15.BorderColor = System.Drawing.Color.Transparent;
+            thumbnailAppearance15.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance15.BorderWidth = 1;
+            this.folderViewer.ThumbnailAppearance = thumbnailAppearance15;
+            thumbnailCaption3.IsVisible = true;
+            thumbnailCaption3.Padding = new Vintasoft.Imaging.PaddingF(0F, 0F, 0F, 0F);
+            thumbnailCaption3.TextColor = System.Drawing.Color.Black;
+            this.folderViewer.ThumbnailCaption = thumbnailCaption3;
+            this.folderViewer.ThumbnailFlowStyle = Vintasoft.Imaging.UI.ThumbnailFlowStyle.WrappedRows;
+            this.folderViewer.ThumbnailMargin = new System.Windows.Forms.Padding(3);
+            this.folderViewer.ThumbnailSize = new System.Drawing.Size(100, 145);
+            this.folderViewer.FileAuthenticationRequest += new System.EventHandler<Vintasoft.Imaging.DocumentAuthenticationRequestEventArgs>(this.folderViewer_AuthenticationRequest);
+            this.folderViewer.FocusedIndexChanged += new System.EventHandler<Vintasoft.Imaging.UI.FocusedIndexChangedEventArgs>(this.folderViewer_FocusedIndexChanged);
+            this.folderViewer.DeleteKeyPressed += new System.Windows.Forms.KeyEventHandler(this.folderViewer_DeleteKeyPressed);
+            this.folderViewer.DragDrop += new System.Windows.Forms.DragEventHandler(this.folderViewer_DragDrop);
+            this.folderViewer.DragEnter += new System.Windows.Forms.DragEventHandler(this.folderViewer_DragEnter);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -587,68 +656,31 @@ namespace ThumbnailViewerDemo
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(784, 740);
-            this.splitContainer1.SplitterDistance = 320;
+            this.splitContainer1.Size = new System.Drawing.Size(784, 719);
+            this.splitContainer1.SplitterDistance = 310;
             this.splitContainer1.TabIndex = 2;
             // 
-            // folderViewer
+            // statusStrip1
             // 
-            this.folderViewer.AllowDrop = true;
-            this.folderViewer.AutoScrollMinSize = new System.Drawing.Size(1, 1);
-            this.folderViewer.BackColor = System.Drawing.Color.White;
-            this.folderViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.folderViewer.DefaultFileIcon = ((Vintasoft.Imaging.VintasoftImage)(resources.GetObject("folderViewer.DefaultFileIcon")));
-            this.folderViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folderViewer.ErrorFileIcon = ((Vintasoft.Imaging.VintasoftImage)(resources.GetObject("folderViewer.ErrorFileIcon")));
-            thumbnailAppearance11.BackColor = System.Drawing.Color.Transparent;
-            thumbnailAppearance11.BorderColor = System.Drawing.Color.Gray;
-            thumbnailAppearance11.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Dotted;
-            thumbnailAppearance11.BorderWidth = 1;
-            this.folderViewer.FocusedThumbnailAppearance = thumbnailAppearance11;
-            this.folderViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            thumbnailAppearance12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
-            thumbnailAppearance12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
-            thumbnailAppearance12.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance12.BorderWidth = 2;
-            this.folderViewer.HoveredThumbnailAppearance = thumbnailAppearance12;
-            this.folderViewer.Location = new System.Drawing.Point(0, 0);
-            this.folderViewer.Name = "folderViewer";
-            thumbnailAppearance13.BackColor = System.Drawing.Color.Black;
-            thumbnailAppearance13.BorderColor = System.Drawing.Color.Black;
-            thumbnailAppearance13.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance13.BorderWidth = 0;
-            this.folderViewer.NotReadyThumbnailAppearance = thumbnailAppearance13;
-            this.folderViewer.SelectedFolder = null;
-            thumbnailAppearance14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(238)))), ((int)(((byte)(253)))));
-            thumbnailAppearance14.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(222)))), ((int)(((byte)(253)))));
-            thumbnailAppearance14.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance14.BorderWidth = 1;
-            this.folderViewer.SelectedThumbnailAppearance = thumbnailAppearance14;
-            this.folderViewer.ShowThumbnailCheckBox = false;
-            this.folderViewer.ShortcutCopy = System.Windows.Forms.Shortcut.None;
-            this.folderViewer.ShortcutCut = System.Windows.Forms.Shortcut.None;
-            this.folderViewer.ShortcutInsert = System.Windows.Forms.Shortcut.None;
-            this.folderViewer.Size = new System.Drawing.Size(778, 301);
-            this.folderViewer.TabIndex = 0;
-            this.folderViewer.Text = "folderThumbnailViewer";
-            this.folderViewer.TextPadding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.folderViewer.TextSpaceHeight = 45;
-            thumbnailAppearance15.BackColor = System.Drawing.Color.Transparent;
-            thumbnailAppearance15.BorderColor = System.Drawing.Color.Transparent;
-            thumbnailAppearance15.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance15.BorderWidth = 1;
-            this.folderViewer.ThumbnailAppearance = thumbnailAppearance15;
-            this.folderViewer.ThumbnailMargin = new System.Windows.Forms.Padding(3);
-            this.folderViewer.ThumbnailSize = new System.Drawing.Size(100, 145);
-            this.folderViewer.FocusedIndexChanged += new System.EventHandler<Vintasoft.Imaging.UI.FocusedIndexChangedEventArgs>(this.folderViewer_FocusedIndexChanged);
-            this.folderViewer.DeleteKeyPressed += new System.Windows.Forms.KeyEventHandler(this.folderViewer_DeleteKeyPressed);
-            this.folderViewer.DragDrop += new System.Windows.Forms.DragEventHandler(this.folderViewer_DragDrop);
-            this.folderViewer.DragEnter += new System.Windows.Forms.DragEventHandler(this.folderViewer_DragEnter);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(66, 17);
+            this.statusLabel.Text = "statusLabel";
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 764);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -682,6 +714,8 @@ namespace ThumbnailViewerDemo
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -717,7 +751,7 @@ namespace ThumbnailViewerDemo
         private System.Windows.Forms.ToolStripComboBox folderFlowStyleToolStripComboBox;
         private System.Windows.Forms.ToolStripMenuItem fileFlowStyleToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox fileFlowStyleToolStripComboBox;
-        private FolderThumbnailViewer folderViewer;
+        private Vintasoft.Imaging.UI.FolderThumbnailViewer folderViewer;
         private System.Windows.Forms.TabControl viewersTabControl;
         private System.Windows.Forms.TabPage imageTabPage;
         private System.Windows.Forms.TabPage containerTabPage;
@@ -733,7 +767,7 @@ namespace ThumbnailViewerDemo
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ProgressBar containerProgressBar;
         private System.Windows.Forms.ToolStripMenuItem selectionCheckBoxToolStripMenuItem;
-
-
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }
